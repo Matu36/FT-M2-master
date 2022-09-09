@@ -1,0 +1,34 @@
+---
+1. En un archivo de texto separado que debes crear,
+escribe explicaciones de los siguientes conceptos como si se 
+lo estuvieras explicando a un niño de 12 años. Hacer esto te 
+ayudará a descubrir rápidamente cualquier agujero 
+en tu comprensión.
+
+	* DOM
+
+    El modelo de objeto de documento (DOM) es una interfaz de 
+    programación para los documentos HTML y XML. Facilita una 
+    representación estructurada del documento y define de qué 
+    manera los programas pueden acceder, al fin de modificar, 
+    tanto su estructura, estilo y contenido.
+
+
+	* DOM element selectors
+     Los selectores api proveen metodos que hacen mas facil y 
+     rapido devolver elementos del nodo Element del DOM mediante 
+     emparejamiento de un conjunto de selectores.
+     El metodo de selectores acepta uno o mas selectores 
+     seperados por comas entre cada selector para determinar 
+     que elemento o elementos deben ser devueltos.
+
+	* DOM events
+
+    Los eventos se envían para notificar al código de cosas 
+    interesantes que han ocurrido. Cada evento está representado
+     por un objeto que se basa en la interfaz Event, y puede tener 
+     campos y/o funciones personalizadas adicionales para obtener 
+     más información acerca de lo sucedido. Los eventos pueden 
+     representar cualquier cosa desde las interacciones básicas 
+     del usuario para notificaciones automatizadas de las cosas 
+     que suceden en el modelo de representación.
