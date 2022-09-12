@@ -1,0 +1,15 @@
+	* Framework
+    Es una plantilla que se utiliza para crear, organizar y desarrollar
+    un software o una app.
+
+	* Preprocesador
+    Un preprocesador permite escribir CSS en un idioma 
+    alternativo y ofrece funciones avanzadas como variables, 
+    funciones y la posibilidad de incluir archivos. En resumen, 
+     ayudan a escribir de manera más simple para organizar mejor el código, 
+    evitando al mismo tiempo las repeticiones.
+
+
+	* Responsive website
+    Una Web Responsive es aquella que es capaz de adaptarse a cualquier 
+    dispositivo donde se visualice
