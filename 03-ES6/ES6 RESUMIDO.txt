@@ -1,0 +1,311 @@
+ECMASCRIPT 6
+
+VAR 
+La variable var podía ser de ámbito global o local. Su ámbito depende del 
+lugar donde se declara pero las posiblidades eran bien limitadas. Para hacer 
+una variable global la teníamos que declarar simplemente fuera del cuerpo de una 
+función. En cambio, las variables locales eran declaradas dentro de una función y 
+solo eran accesibles dentro del código de esa función.
+
+LET
+
+function () {
+  console.log(miVar);
+  if (true) {
+    let miVar = "Hola mundo";
+  }
+  console.log(miVar);
+};
+La clave de let es que restringe su existencia al ámbito donde ha sido declarada 
+(cualquier ámbito expresado con unas llaves). Por tanto, la salida de la consola 
+sería en este caso:
+
+undefined
+undefined
+
+sólo existirán dentro del bloque que las contenga y no contaminará nunca 
+nuestro código a su alrededor.
+
+CONST
+Variable donde su valor es inalterable a lo largo del código. 
+
+
+LITERALES DE OBJETO
+
+Un literal de objeto no es más que un objeto escrito directamente en el código. 
+Algo muy típico en la programación Javascript, que nos permite crear objetos 
+indicado su valor y sin la necesidad de utilizar clases como "molde".
+
+var literalObjeto = {
+  campo: "valor",
+  meGustaDesarrolloWeb: true, 
+  matriz: [ 1, 2, 5 ],
+  metodo: function() {
+    console.log('Esto es un método')
+  }
+}
+
+Una de las mejoras consiste en la posibilidad de resumir la escritura 
+de métodos de los objetos literales. Con esta nueva sintaxis nos ahorramos la 
+palabra "function", quedando de esta manera.
+
+let factura = {
+  id: 'A2016-156',
+  cliente: 'Nombre del cliente',
+  productos: [
+    {
+      name: 'Bombillas LED',
+      precio: 234
+    },
+    {
+      name: 'Tornillos inox',
+      precio: 4
+    }
+  ],
+  precio() {
+    console.log('calculando precio');
+    var precio = 0;
+    this.productos.forEach(function(prod){
+       precio += prod.precio
+    })
+    return precio
+  }
+}
+
+TEMPLATE STRINGS
+
+Crear un template string
+Para crear un template string simplemente tienes que usar un carácter distinto 
+como apertura y cierre de la cadena. Es el símbolo del acento grave.
+
+var cadena = `Esto es un template String`;
+
+En un programa realizado en Javascript, y en cualquier lenguaje de 
+programación en general, es normal crear cadenas en las que tenemos que juntar el 
+contenido de literales de cadena con los valores tomados desde las variables. 
+A eso le llamamos interpolar.
+
+var sitioWeb = "DesarrolloWeb.com";
+var mensaje = 'Bienvenido a ' + sitioWeb;
+
+Interpolación de valores
+Creo que lo más interesante es el caso de la interpolación que genera un código 
+poco claro hasta el momento. Echa un vistazo al código siguiente que haría lo mismo 
+que el que hemos visto anteriormente del perfil.
+
+var nombre = 'Miguel Angel';
+var apellidos = 'Alvarez'
+var profesion = 'desarrollador';
+var perfil = `<b>${nombre} ${apellidos}</b> es ${profesion}`;
+
+ARROW FUNCTION O FUNCIONES FLECHA
+
+Cómo expresar una función con las arrow functions
+Esta parte es bien simple, en vez de usar la palabra clave function se utiliza 
+el símbolo de la flecha gorda, como se puede ver en el siguiente código:
+
+let mifuncion = () => {
+  //código de la función
+}
+La invocación de la función se realizaría como ya conoces.
+
+mifuncion();
+
+Parámetros de las funciones flecha
+El tratamiento de los parámetros se realiza como hasta ahora, simplemente se 
+colocan entre los paréntesis. Veamos este segundo ejemplo.
+
+let saludo = (nombre, tratamiento) => {
+  alert('Hola ' + tratamiento + ' ' + nombre)
+}
+
+//invocamos
+saludo('Miguel', 'sr.');
+
+Si tenemos una sola linea de codigo nos podemos ahorrar las llaves y el return;
+La función del cuadrado de un número podría expresarse así.
+
+let cuadrado = numero => numero * numero;
+
+DEFINIR PARAMETROS CON VALORES POR DEFECTO
+Igual que en otros lenguajes, para definir los valores predeterminados 
+de los parámetros, realizamos una asignación de esos valores a los parámetros en la 
+cabecera de la función
+
+function saludar(nombre = 'Miguel Angel') {
+  console.log('Hola ' + nombre);
+}
+Esta función recibe un parámetro llamado "nombre", con un valor predeterminado. 
+Este valor se asignará en caso que al invocar a la función no le pasemos nada.
+
+saludar();
+
+Pero, aunque indiquemos un valor predeterminado, podemos seguir invocando a 
+la función enviando un valor diferente como parámetro.
+
+saludar('DesarrolloWeb.com');
+
+REST OPERATOR
+
+En si "rest operator" se escribe mediante tres puntos seguidos, uno detrás de 
+otro (...). Son como los puntos suspensivos de la escritura tradicional. Su 
+funcionamiento es bastante sencillo, como veremos a continuación.
+
+Podemos usar el operador rest en una función, dentro del juego de parámetros 
+definido en su cabecera.
+
+En el siguiente código puedes ver un primer ejemplo de uso, en el que indicamos "...
+numeros" como parámetros de la función.
+
+function max(...numeros) {
+  console.log(numeros);
+}
+Esto quiere decir que, cualquier cantidad de parámetros enviada a la hora de 
+invocar a la función, se va a estructurar como un array y se va a conocer dentro de la 
+función con el nombre de "numeros".
+
+Puedes por tanto invocar a la función con 1 parámetro, 2, 3, 100 o incluso 
+sin parámetros… Tanto da. Lo que tendrás siempre en el parámetro "numero" 
+es un array, con 1, 2, 3, 100 o cero casillas.
+
+Puedes comprobarlo al invocar a la anterior función con cualquier juego de parámetros.
+
+max(1, 2, 6);
+max();
+max(1, 5, 6, 7, 10001);
+Incluso podrías mezclar los tipos de los parámetros.
+
+max("test", 4, true, 2000, "90");
+
+SPREAD OPERATOR
+
+Para nuestro ejemplo vamos a hacer uso de la función min() de la clase Math de 
+Javascript. Por si no lo sabes, esta función espera recibir cualquier número de 
+parámetros numéricos y devuelve el que tenga el valor menor.
+
+Por ejemplo, podemos invocarla así.
+
+Math.min(2, 5, 7, 1, 9);
+Esto nos devolverá el valor 1, que es el mínimo de los parámetros enviados.
+
+Para hacer uso del spread operator necesitamos partir de un array y conseguiremos 
+convertir ese array en una lista de parámetros, de la siguiente manera.
+
+let miArray = [2, 5, 7, 1, 9];
+let minimo =Math.min(...miArray);
+Como puedes ver, el operador de propagación se idéntico al operador rest. Lo único 
+que aquí lo estamos usando en la invocación de una función.
+
+MODULOS
+
+ Simplemente tenemos que marcar con type="module" el script que queremos incluir.
+
+<script src="index.js" type="module"></script>
+A partir de este momento, en index.js ya puedes usar imports de otros módulos, tal como explicaremos seguidamente.
+
+Compatibilidad en navegadores antiguos
+El uso de este "type" es importante, no solo porque así te aseguras que puedes usar 
+ES6 modules, sino porque puedes implementar alternativas para diversos navegadores.
+
+Export
+Como hemos dicho, usamos la sentencia export para permitir que otros módulos 
+usen código del presente módulo.
+
+Con un export puedes exportar todo tipo de piezas de software, como datos en variables 
+de tipos primitivos, funciones, objetos, clases. Ahora vamos a comenzar viendo un caso 
+sencillo de hacer un export, luego veremos más alternativas.
+
+export const pi = 3.1416;
+Simplemente anteponemos la palabra export a aquello que queremos exportar hacia afuera.
+
+Import
+En el momento que queramos cargar alguna cosa de un módulo externo, usaremos la 
+sentencia import. Para ello tenemos que indicar qué es lo que queremos importar y 
+la ruta donde está el módulo que contiene aquello que se desea importar.
+
+import { pi } from './pi-module.js';
+Así estamos importando la anterior constante definida "pi", que estaba en un 
+archivo aparte, en un módulo llamado "pi-module.js". Observarás por la ruta que pi-
+module.js está en la misma ruta que el archivo desde el que importamos.
+
+Para que te quede claro el proceso, vamos a ver listados los tres archivos que 
+puedes tener para hacer el primer test a los módulos de ES6.
+
+index.html
+Tendremos un archivo index.html que tendrá que acceder al script que trabaja con módulos.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test es6 modules</title>
+</head>
+<body>
+  <h1>Test de los módulos ES6</h1>
+
+  <script src="index.js" type="module"></script>
+</body>
+</html>
+index.js
+Este es el archivo principal de Javascript, en el que vamos a hacer los import.
+
+Una vez que has hecho el import correspondiente, puedes usar aquello que hayas importado.
+
+import { pi } from './pi-module.js';
+console.log(pi);
+Podrías importar varias cosas al mismo tiempo de un módulo, en cuyo caso entre las 
+llaves colocarías todos los elementos a importar, separados por comas.
+
+import { pi, e, log2 } from './pi-module.js';
+pi-module.js
+Este es el archivo que realiza el export, el módulo que expone hacia afuera las 
+piezas de software que sean necesarias.
+
+CLASES
+
+En ECMAScript 2015 (ES6) las clases se declaran de manera similar a otros lenguajes, 
+usando la palabra "class", seguida del nombre de la clase que estamos creando.
+
+class Coordenada {
+
+}
+
+class Coordenada {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+Instanciación de objetos a partir de una clase
+Como en otros lenguajes, usamos la palabra "new" para crear nuevos objetos de una clase, 
+seguida del nombre de la clase y todos los parámetros que se deban indicar para invocar 
+al constructor.
+
+var testCoordenada = new Coordenada(8,55);
+
+Creación de métodos en la clase
+Las clases en ES6 pueden declarar sus métodos de una manera resumida, pues nos 
+ahorramos la palabra "function" en la declaración de la función.
+
+class Coordenada {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  esIgual(coordenada) {
+    if (this.x == coordenada.x && this.y == coordenada.y) {
+      return true;
+    }
+    return false;
+  }
+}
+
+Recuerda que los métodos se invocan sobre el nombre del objeto, con el operador punto 
+y el nombre del método, seguido por sus parámetros. Podríamos usar esta clase y el 
+nuevo método con este código:
+
+var testCoordenada = new Coordenada(8,55);
+console.log(testCoordenada.esIgual(new Coordenada(3, 1)))
+Al ejecutar esto, veríamos "false" en la consola de Javascript.
