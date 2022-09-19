@@ -30,9 +30,10 @@ $ ("#search").click (() => {
 
 
 $ ("#delete").click (() => {
+    let deleteID = $("#inputDelete"). val ();
 $.ajax ({
-    method: "DELETE" ,
-    url: `$("http://localhost:5000/amigos")/${$("#inputDelete").val()}` ,
+    type: "DELETE" ,
+    url: `http://localhost:5000/amigos/${deleteID}` ,
     success: () => {
         $("#success").text ("Tu amigo fue borrado con éxito");
     },
