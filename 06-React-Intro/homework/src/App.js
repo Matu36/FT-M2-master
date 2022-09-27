@@ -10,7 +10,7 @@ function App() {
     
 <div className="App">
 
-      {/*<div>}
+      <div>
         <Card
           max={Cairns.main.temp_max}
           min={Cairns.main.temp_min}
@@ -18,8 +18,8 @@ function App() {
           img={Cairns.weather[0].icon}
           onClose={() => alert(Cairns.name)}
         />
-  </div> }
-      <hr /> */}
+      </div>
+      <hr />
       <div>
         <Cards
           cities={data}

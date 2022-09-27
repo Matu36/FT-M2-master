@@ -1,20 +1,20 @@
 import React from 'react';
 
-export default function Card(props) {
+export default function Card({max, min, name, img, onClose}) {
   //props= max, min, name, img, onClose
   // acá va tu código
   
   return (
   <div>
-    <button onClick = {props.onClose}>x</button>
-    <h4>{props.name}</h4>
+    <button onClick = {onClose}>x</button>
+    <h3>{name}</h3>
     <div>
-<p>Min</p>
-<p>{props.Min}</p>
-<p>Max</p>
-<p>{props.Max}</p>
+<h5>Min</h5>
+<p>{min}</p>
+<h5>Max</h5>
+<p>{max}</p>
 </div>
-<img src={`http://openweathermap.org/img/wn/${props.img}@2x.png`}/>
+<img src={`http://openweathermap.org/img/wn/${img}@2x.png`} alt="icon"/>
 
   </div> )
   };
