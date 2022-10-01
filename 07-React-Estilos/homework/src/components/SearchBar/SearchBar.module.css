@@ -1,0 +1,18 @@
+.container {
+    padding: 30px;
+    display: flex;
+    justify-content: flex-start;
+   
+    
+}
+
+.btn {
+    color: black;
+    background-color: gainsboro;
+    font-size:large
+}
+
+.btn:hover {
+    background-color: black;
+    color: gainsboro;
+}
