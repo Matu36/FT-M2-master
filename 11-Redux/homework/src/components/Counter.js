@@ -2,15 +2,20 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { increment, decrement } from '../actions';
 
+
+
 class Counter extends Component {
     // Extra Credit
     incrementIfOdd = () => {
       //Implementar una función de incremento que sólo aumenta si el valor del contador es impar
+       
     };
     // Extra Credit
     incrementAsync = () => {
         //  Implementar una función de incremento que aumenta después de esperar un segundo
-    };
+        
+            
+        };
 
     render() {
         // Completa las funciones onClick de los botones
@@ -18,11 +23,11 @@ class Counter extends Component {
         return (
             <p>
                 Clickeado: {this.props.count} veces
-                <button onClick={() => {/* Completar */ }}>
-                    + {/* Incremeta */}
+                <button onClick= {this.props.increment}>
+                    + {}
                 </button>
-                <button onClick={() => {/* Completar */ }}>
-                    -  {/* Decrementa */}
+                <button onClick={this.props.decrement}>
+                    -  {}
                 </button>
                  {/* Si quieres hacer los extra credit puede descomentar las lineas de abajo */}
                 {/* <button onClick={this.incrementIfOdd}>
