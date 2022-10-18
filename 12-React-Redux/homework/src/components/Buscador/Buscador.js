@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import './Buscador.css';
-
-
+import { addMovieFavorite } from "../../actions";
+import { getMovies } from "../../actions";
 
 export class Buscador extends Component {
   constructor(props) {
@@ -16,8 +16,10 @@ export class Buscador extends Component {
     this.setState({ title: event.target.value });
   }
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
+    this.props.getMovies (this.state.title);
   }
+
 
   render() {
     const { title } = this.state;
@@ -38,11 +40,74 @@ export class Buscador extends Component {
           <button type="submit">BUSCAR</button>
         </form>
         <ul>
-         {/* Aqui tienes que escribir tu codigo para mostrar la lista de peliculas */}
+         {this.props.movies.map (movie => {
+          return (
+          <li key = {movie.imdbID}> 
+<Link to= {`/movie/${movie.imdbID}`}> {movie.Title} </Link>
+<button onClick={()=>this.props.addMovieFavorite({title: movie.Title, id: movie.imdbID})}>
+                Fav
+              </button> 
+            </li>
+          )
+         })}
         </ul>
       </div>
     );
   }
 }
 
-export default Buscador;
+function mapStateToProps(state) {
+  return {
+    movies: state.moviesLoaded
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addMovieFavorite: movie => dispatch(addMovieFavorite(movie)),
+    getMovies: title => dispatch(getMovies(title))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Buscador);
+
+
+/*
+HACER ESTE COMPONENTE COMO COMPONENTE DE FUNCION
+
+export default function Buscador ({prop1, prop2}) {
+  const [title, setTitle] = useState ("");
+
+  let handleChange = (e) => {
+    setTitle = e.target.value };
+  
+    let handeSubmit = (e) => {
+      e.preventDefault ();
+    }
+    return (
+      <div>
+        <h2>Buscador</h2>
+        <form className="form-container" onSubmit={(e) => this.handleSubmit(e)}>
+          <div>
+            <label className="label" htmlFor="title">Película: </label>
+            <input
+              type="text"
+              id="title"
+              autoComplete="off"
+              value={title}
+              onChange={(e) => this.handleChange(e)}
+            />
+          </div>
+          <button type="submit">BUSCAR</button>
+        </form>
+        <ul>
+         
+         </ul>
+      
+)
+}
+
+*/
